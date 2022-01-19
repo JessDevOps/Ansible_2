@@ -1,0 +1,18 @@
+#yum.yml
+---
+- hosts: servers
+  become: yes
+  tasks:
+    - name: Create yum repos
+      yum_repository:
+        name: "{{ item.name }}"
+        description: "{{ item.descr }}"
+        baseurl:  "{{ item.baseurl | default(omit)}}" 
+        enabled: "{{ item.enabled }}"
+        gpgcheck: "{{ item.gpgcheck }}"
+        s3_enabled: "{{ item.s3_enabled | default('no') }}"
+        metalink: "{{ item.metalink | default(omit) }}"
+      with_items: "{{ yumrepos }}"
+      tags:
+        - yum
+    

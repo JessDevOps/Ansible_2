@@ -1,0 +1,21 @@
+# install_nginx.yml
+---
+- hosts: servers
+  become: yes
+  tasks:
+    - name: import yum package task
+      import_tasks: yum.yml
+
+    - name: Install nginx 
+      yum: 
+        name: nginx 
+        state: latest 
+        update_cache: true
+      notify:
+        - start nginx
+  handlers:
+    - name: start nginx
+      service: 
+        name: nginx 
+        state: started
+      

@@ -1,0 +1,5 @@
+#main.yml
+---
+
+yumrepos:
+- { name: 'epel', metalink: 'https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch&infra=$infra&content=$contentdir', descr: 'Extra Packages for Enterprise Linux', enabled: 'yes', gpgcheck: 'no' } 
